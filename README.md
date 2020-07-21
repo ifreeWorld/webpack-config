@@ -11,13 +11,24 @@ $ npm install @ifreeworld/webpack-config
 ## 使用
 
 ```javascript
+const path = require('path');
 const webpackConfig = require('@ifreeworld/webpack-config');
+
+/**
+ * 判断开发环境和生产环境作配置上的区分
+ */
+const isProduction = process.env.NODE_ENV === 'production';
+
+/**
+ * 基础 URL 路径
+ */
+const DEPLOY_PATH = process.env.DEPLOY_PATH || '';
+
 const needAnalyzer = process.env.needAnalyzer === 'true';
 const needSpeedMeasure = process.env.needSpeedMeasure === 'true';
 const tinifyApiKey = process.env.tinifyApiKey || ''; // @sea https://tinypng.com/developers
 
-// 创建配置
-const config = webpackConfig(__dirname, {
+module.exports = webpackConfig(__dirname, {
   isProduction,
   needAnalyzer,
   needSpeedMeasure,
@@ -34,16 +45,15 @@ const config = webpackConfig(__dirname, {
   },
   globalConstants: {
     // 基础 URL 路径
-    'process.env.DEPLOY_PATH': '"' + DEPLOY_PATH + '"',
-    // 旧 APP 的端口号，本地调试时用
-    'process.env.OLD_PORT':
-      '"' + (isProduction ? '' : process.env.OLD_PORT) + '"'
+    'process.env.DEPLOY_PATH': '"' + DEPLOY_PATH + '"'
   },
-  port: 8001,
+  port: 8987,
   proxy: {
-    '/api/': 'http://10.42.32.129:8107/'
-  }
+    '/api/': 'http://www.baidu.com/'
+  },
+  host: 'localhost'
 });
+
 ```
 
 | 参数 | 值类型 | 描述 |
