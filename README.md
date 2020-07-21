@@ -10,6 +10,7 @@ $ npm install @ifreeworld/webpack-config
 
 ## 使用
 
+webpack.config.js
 ```javascript
 const path = require('path');
 const webpackConfig = require('@ifreeworld/webpack-config');
@@ -53,7 +54,26 @@ module.exports = webpackConfig(__dirname, {
   },
   host: 'localhost'
 });
+```
 
+src/index.js
+```javascript
+console.log('入口');
+```
+
+src/index.ejs
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <title></title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
 ```
 
 | 参数 | 值类型 | 描述 |
